@@ -3,7 +3,7 @@ options:
 
 steps:
   #0. unit test
-  - name: "python:3.13" #Cambiar al lenguaje de programacion que se usa
+  - name: "python:3.12" #Cambiar al lenguaje de programacion que se usa
     id: "run-unit-tests"
     entrypoint: bash
     args:
