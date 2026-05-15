@@ -25,11 +25,11 @@ class ReservaService:
             logger.warning(f"Reserva {command.id} no encontrada")
             return None
 
-        if reserva.estado == "REEMBOLSADO":
+        if reserva.estado == "REEMBOLSADA":
             logger.info(f"Reserva {reserva.id} ya estaba reembolsada")
             return reserva
 
-        reserva.estado = "REEMBOLSADO"
+        reserva.estado = "REEMBOLSADA"
 
         self.db.commit()
         self.db.refresh(reserva)

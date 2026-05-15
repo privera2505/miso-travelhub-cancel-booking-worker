@@ -17,3 +17,5 @@ class SyncCommand(BaseModel):
     impuestos: Decimal
     total: Decimal
     moneda: str
+
+    retry_count: int = 0

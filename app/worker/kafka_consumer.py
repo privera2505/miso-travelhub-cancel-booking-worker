@@ -75,13 +75,13 @@ class KafkaConsumerLoop:
             self.consumer.commit(msg)
 
         except NonRetryableError as e:
-            logger.error(f"NonRetryable error for event {command.event_id}: {e}")
+            logger.error(f"NonRetryable error for event {command.id}: {e}")
             self.consumer.commit(msg)
 
         except Exception as e:
             if self.retry_handler.should_retry(command.retry_count):
                 next_count = self.retry_handler.get_next_retry_count(command.retry_count)
-                self.retry_handler.log_retry(command.retry_count, e, str(command.event_id))
+                self.retry_handler.log_retry(command.retry_count, e, str(command.id))
                 self._republish(command, next_count, db)
             self.consumer.commit(msg)
 
@@ -98,5 +98,5 @@ class KafkaConsumerLoop:
         )
         self.producer.flush()
         logger.info(
-            f"Republished event {command.event_id} with retry_count={retry_count}"
+            f"Republished event {command.id} with retry_count={retry_count}"
         )

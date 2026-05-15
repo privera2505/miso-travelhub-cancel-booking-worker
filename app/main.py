@@ -29,6 +29,6 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="Cancel Booking Worker", version="1.0.0", lifespan=lifespan)
 
-app.get("/worker/booking_cancelation/health")
+@app.get("/worker/booking_cancelation/health")
 async def health():
     return "pong"
