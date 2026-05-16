@@ -7,8 +7,8 @@ from decimal import Decimal
 class SyncCommand(BaseModel):
     id: UUID
     codigo: str
-    viajeroId: UUID
-    habitacionId: UUID
+    viajeroId: str
+    habitacionId: str
     fechaCheckIn: datetime
     fechaCheckOut: datetime
     numHuespedes: int
